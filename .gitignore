@@ -1,0 +1,17 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Output gambar (opsional - uncomment jika tidak ingin push)
+# output/*.png
+
+# Dataset besar (tidak push ke git)
+dataset/yield.csv
+dataset/pesticides.csv
+dataset/rainfall.csv
+dataset/temp.csv
