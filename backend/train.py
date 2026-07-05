@@ -5,15 +5,22 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
 import joblib
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(BASE_DIR)
+
+
+def p(*parts):
+    return os.path.join(ROOT_DIR, *parts)
+
 def main():
     print("Mulai proses training...")
     
     # 1. Buat folder backend/ jika belum ada
-    os.makedirs('backend', exist_ok=True)
+    os.makedirs(p('backend'), exist_ok=True)
     
     # 2. Muat dataset mentah untuk merekonstruksi LabelEncoder
     print("Memuat dataset mentah untuk mencocokkan LabelEncoder...")
-    df_raw = pd.read_csv('dataset/yield_df.csv')
+    df_raw = pd.read_csv(p('dataset', 'yield_df.csv'))
     
     # Standarisasi kolom seperti di preprocessing.ipynb
     df_raw.rename(columns={'hg/ha_yield': 'yield_hg_ha'}, inplace=True)
@@ -32,19 +39,19 @@ def main():
     print(f"  Jumlah kelas Item (tanaman): {len(le_item.classes_)}")
     
     # Simpan LabelEncoder
-    joblib.dump(le_area, 'backend/le_area.pkl')
-    joblib.dump(le_item, 'backend/le_item.pkl')
+    joblib.dump(le_area, p('backend', 'le_area.pkl'))
+    joblib.dump(le_item, p('backend', 'le_item.pkl'))
     print("LabelEncoder disimpan di backend/le_area.pkl dan backend/le_item.pkl")
     
     # 3. Muat data train hasil preprocessing
     print("Memuat data train...")
-    X_train = pd.read_csv('output/X_train.csv')
-    y_train = pd.read_csv('output/y_train.csv').squeeze()
+    X_train = pd.read_csv(p('output', 'X_train.csv'))
+    y_train = pd.read_csv(p('output', 'y_train.csv')).squeeze()
     
     # 4. Latih model RandomForestRegressor
     print("Melatih model RandomForestRegressor...")
     model = RandomForestRegressor(
-        n_estimators=100,
+        n_estimators=300,
         max_depth=None,
         min_samples_split=2,
         min_samples_leaf=1,
@@ -56,7 +63,7 @@ def main():
     print("Model berhasil dilatih.")
     
     # 5. Simpan model
-    joblib.dump(model, 'backend/model.pkl')
+    joblib.dump(model, p('backend', 'model.pkl'))
     print("Model berhasil disimpan di backend/model.pkl")
     
     print("Semua proses training selesai dengan sukses!")

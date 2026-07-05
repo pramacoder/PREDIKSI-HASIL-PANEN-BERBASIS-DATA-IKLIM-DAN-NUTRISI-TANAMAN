@@ -5,14 +5,21 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(BASE_DIR)
+
+
+def p(*parts):
+    return os.path.join(ROOT_DIR, *parts)
+
 app = Flask(__name__)
 CORS(app)  # Mengizinkan request dari frontend Next.js
 
 # Load model dan encoders
-model_path = os.path.join('backend', 'model.pkl')
-knn_model_path = os.path.join('backend', 'knn_pipeline_model.pkl')
-le_area_path = os.path.join('backend', 'le_area.pkl')
-le_item_path = os.path.join('backend', 'le_item.pkl')
+model_path = p('backend', 'model.pkl')
+knn_model_path = p('backend', 'knn_pipeline_model.pkl')
+le_area_path = p('backend', 'le_area.pkl')
+le_item_path = p('backend', 'le_item.pkl')
 
 if not (os.path.exists(model_path) and os.path.exists(le_area_path) and os.path.exists(le_item_path)):
     raise RuntimeError("Model dan label encoder belum dilatih! Jalankan train.py terlebih dahulu.")

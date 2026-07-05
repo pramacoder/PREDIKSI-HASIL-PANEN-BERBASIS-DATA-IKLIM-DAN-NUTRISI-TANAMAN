@@ -203,7 +203,7 @@ export default function Home() {
                   </span>
                   <span className="text-[10px] opacity-70 font-normal">R²: 98.56%</span>
                 </button>
-                <button
+                {/* <button
                   type="button"
                   onClick={() => setModelType('knn')}
                   className={`py-2.5 px-3 rounded-lg text-xs font-bold transition-all duration-200 flex flex-col items-center justify-center gap-1 cursor-pointer relative ${
@@ -220,7 +220,7 @@ export default function Home() {
                     Optimized KNN
                   </span>
                   <span className="text-[10px] opacity-70 font-normal">R²: 98.96%</span>
-                </button>
+                </button> */}
               </div>
             </div>
 
