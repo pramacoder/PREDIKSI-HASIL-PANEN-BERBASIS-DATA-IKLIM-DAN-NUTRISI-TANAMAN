@@ -160,7 +160,7 @@ export default function Home() {
                 : 'bg-blue-100 text-blue-800 dark:bg-blue-950/50 dark:text-blue-400'
             }`}>
               <span className={`w-1.5 h-1.5 mr-1.5 rounded-full ${modelType === 'knn' ? 'bg-emerald-500' : 'bg-blue-500'} animate-pulse`}></span>
-              Model Aktif: {modelType === 'knn' ? 'Optimized KNN (R²: 98.96%)' : 'Random Forest (R²: 98.56%)'}
+              Model saat ini {modelType === 'knn' ? 'Optimized KNN (R²: 98.96%)' : 'Random Forest (R²: 98.56%)'}
             </span>
           </div>
         </div>
@@ -363,7 +363,7 @@ export default function Home() {
               </div>
 
               {/* Slider / Inputs: Pesticides */}
-              <div>
+              <div>7
                 <div className="flex justify-between items-center mb-1.5">
                   <label className="block text-xs font-semibold text-slate-600 dark:text-zinc-400">
                     Penggunaan Pestisida (Ton)
